@@ -117,6 +117,12 @@ def generatePeopleDF(filepath_tn, filepath_imdb):
     
     # Remove duplicate genres
     grp_dir_df.genres = grp_dir_df.genres.apply(set).apply(list)
+<<<<<<< HEAD
+=======
+
+    # Drop directors with an average < $100,000,000
+    grp_dir_df.drop(grp_dir_df[grp_dir_df.mean_total_gross < 100000000].index, inplace=True)
+>>>>>>> main
     
     # 0 stddev = duplicate movies
     grp_dir_df.drop(grp_dir_df[grp_dir_df.std_total_gross == 0].index, inplace=True)
@@ -191,6 +197,12 @@ def generatePeopleDF(filepath_tn, filepath_imdb):
     
     # Remove duplicate genres
     grp_wri_df.genres = grp_wri_df.genres.apply(set).apply(list)
+<<<<<<< HEAD
+=======
+
+    # Drop writers with an average < $100,000,000
+    grp_wri_df.drop(grp_wri_df[grp_wri_df.mean_total_gross < 100000000].index, inplace=True)
+>>>>>>> main
     
     # 0 stddev = duplicate movies
     grp_wri_df.drop(grp_wri_df[grp_wri_df.std_total_gross == 0].index, inplace=True)
@@ -246,10 +258,17 @@ def generatePeopleDF(filepath_tn, filepath_imdb):
     grp_act_df = act_df.copy()
     grp_act_df['movie_info'] = act_df[['primary_title', 'genres', 'domestic_gross', 'worldwide_gross', 'total_gross', 'production_budget']].to_dict(orient='records')
 
+<<<<<<< HEAD
     # Group by writer
     grp_act_df = grp_act_df.movie_info.groupby(grp_act_df.primary_name).apply(list).reset_index()
 
     # Add num_movies column, get rid of writers with < 3 movies
+=======
+    # Group by actor
+    grp_act_df = grp_act_df.movie_info.groupby(grp_act_df.primary_name).apply(list).reset_index()
+
+    # Add num_movies column, get rid of actors with < 3 movies
+>>>>>>> main
     grp_act_df['num_movies'] = grp_act_df.movie_info.str.len()
     grp_act_df.drop(grp_act_df[grp_act_df['num_movies'] < 3].index, inplace=True)
     grp_act_df.reset_index(inplace=True)
@@ -271,6 +290,12 @@ def generatePeopleDF(filepath_tn, filepath_imdb):
     
     # Remove duplicate genres
     grp_act_df.genres = grp_act_df.genres.apply(set).apply(list)
+<<<<<<< HEAD
+=======
+
+    # Drop actors with an average < $100,000,000
+    grp_act_df.drop(grp_act_df[grp_act_df.mean_total_gross < 100000000].index, inplace=True)
+>>>>>>> main
     
     # 0 stddev = duplicate movies
     grp_act_df.drop(grp_act_df[grp_act_df.std_total_gross == 0].index, inplace=True)

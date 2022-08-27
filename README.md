@@ -36,23 +36,32 @@ The second is used for analysis of ROI to movie people and takes data from:
 
 ## Reading data files and merge data
 
-The database files are read into Pandas dataframes. The dataframes are merged into in two data dataframe, one for analysis for analysis of genre to ROI and also for analysis of genre to rating popularity. The second dataframe is used to analyze movie people to ROI.
+The database files are read into Pandas DataFrames. The DataFrames are merged into in two data DataFrames, one for analysis of genre to ROI and also for analysis of genre to rating popularity, and another for analysis of movie staff and their risk.
 
 ## Data cleaning & engineering
-Columns not needed for analysis are dropped. Convert 'production_budget', 'domestic_gross', 'worldwide_gross' to integer and 'release_date' to datetime object. Create a new column called 'Assigned_genre_ids' and assign to it the first number of 'genre_ids' and covert this to integer. Drop rows where 'genre_ids' cell is empty and drop rows if production_budget, domestic_gross or worldwide_gross has a value of zero. Remove rows with release date less than 2000. Drop duplicated rows. Create a dictionary called 'genre_ids_dict' with key assocaited with 'Assigned_genre_ids' and values with writtten genre name. Then, create a column called 'Assigned_genre_name' and use the dictionary to input written genre name with the respective key. Then combine low number genres to a genre closely similar. Two additional columns are created for 'Pofit' and 'ROI' calculation. Create a dataframe called 'genre_ratings_df' by copying 'movie_basics_ratings_tmdb_tn_df' and rearrange columns so related columns placed close to one another.
+After the dataframes were merged, columns not needed for analysis were dropped. A row/record was dropped if one of the relevant cell columns had a nan value. Also, any record before the 2000 were dropped for purposes of keeping the data relevant to current time. Data type for some columns were converted from object to integer or datetime in order to perform analysis. Some columns were added for calculation puposes or extracting a specific value from anotehr column.
 
 ## Data visualization and analysis
 Genre Comparison to ROI
-<img src="code/genre_roi.jpeg" alt="Genre Comparison to ROI"/>
+<img src="images/genre_roi.jpeg" alt="Genre Comparison to ROI"/>
 
 Genre Comparison to Rating
-<img src="code/genre_rating.jpeg" alt="Genre to Rating"/>
+<img src="images/genre_rating.jpeg" alt="Genre to Rating"/>
 
 Genre to Movie People
-<img src="code/directors_horror.jpeg" alt="Genre to Rating"/>
+<img src="images/directors.jpeg" alt="Genre to Rating"/>
 
 ## Conclusion
-
+* According to return on investment (ROI) analysis romance, science-fiction/fantasy and
+   family are most promising in creating video content. 
+ * The Movie Database(TMDB) rating analysis shows that family, thriller and science-
+   fiction/fantasy are among the top five rated genres. This aligns with how the genre are
+   with ROI. It is therefore a moderate indicator how a particalar genre performs
+   financially.
+ * For analysis of key content creaters (directors, writeres and actors) the recommendation for directors are as follows:   
+    - For sci-fi and fantasy films, top two picks are the Russo brothers and Peter Jackson.
+    - For romance, top two picks are Joss Whedon and Francis Lawrence. 
+    - For horror, James Wan
 
 
 
